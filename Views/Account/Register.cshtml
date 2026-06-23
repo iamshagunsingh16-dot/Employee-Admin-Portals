@@ -1,0 +1,45 @@
+@model Employee_Admin_Portal.Models.DTOs.RegisterRequestDto
+@{
+    ViewData["Title"] = "Create Account";
+    Layout = "_AuthLayout";
+}
+
+<div class="mb-4">
+    <h2 class="fw-bold mb-1" style="color:#111827;">Create your account</h2>
+    <p class="text-muted mb-0" style="font-size:.93rem;">Join the Employee Admin Portal today</p>
+</div>
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small rounded-3"></div>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label fw-semibold text-dark mb-1" style="font-size:.9rem;">Email address</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input asp-for="Email" class="form-control" placeholder="you@company.com" autocomplete="email" autofocus />
+        </div>
+        <span asp-validation-for="Email" class="text-danger" style="font-size:.82rem;"></span>
+    </div>
+
+    <div class="mb-4">
+        <label asp-for="Password" class="form-label fw-semibold text-dark mb-1" style="font-size:.9rem;">Password</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input asp-for="Password" type="password" class="form-control" placeholder="Minimum 6 characters" autocomplete="new-password" />
+        </div>
+        <span asp-validation-for="Password" class="text-danger" style="font-size:.82rem;"></span>
+        <p class="text-muted mt-1 mb-0" style="font-size:.8rem;">New accounts are created with the <strong>Employee</strong> role.</p>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-auth mb-3">
+        <i class="bi bi-person-check me-2"></i>Create Account
+    </button>
+</form>
+
+<div class="divider">or</div>
+
+<p class="text-center text-muted mb-0" style="font-size:.9rem;">
+    Already have an account?
+    <a asp-controller="Account" asp-action="Login" class="fw-semibold text-decoration-none" style="color:#1a56db;">Sign in</a>
+</p>

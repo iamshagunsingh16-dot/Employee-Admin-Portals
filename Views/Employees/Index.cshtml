@@ -1,0 +1,114 @@
+@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Employees";
+    var departments = ViewBag.Departments as List<string> ?? new List<string>();
+}
+
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+        <h4 class="fw-bold mb-0">Employees</h4>
+        <small class="text-muted">@Model.Count() employee(s)</small>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-1"></i>Add Employee
+    </a>
+</div>
+
+<div class="card stat-card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-2 align-items-end">
+            <div class="col-md-5">
+                <label class="form-label small text-muted mb-1">Search</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-search text-muted"></i></span>
+                    <input type="text" name="search" value="@ViewBag.Search" class="form-control border-start-0"
+                           placeholder="Name, email, or job title…" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label small text-muted mb-1">Department</label>
+                <select name="department" class="form-select">
+                    <option value="">All Departments</option>
+                    @foreach (var dept in departments)
+                    {
+                        <option value="@dept" selected="@(ViewBag.Department == dept)">@dept</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3 d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-fill">Filter</button>
+                <a asp-action="Index" class="btn btn-outline-secondary">Clear</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center py-5 text-muted">
+        <i class="bi bi-people fs-1 d-block mb-2"></i>
+        No employees found.
+        <div class="mt-2"><a asp-action="Create" class="btn btn-sm btn-primary">Add the first one</a></div>
+    </div>
+}
+else
+{
+    <div class="card stat-card">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Job Title</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Salary</th>
+                        <th>Hired</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@emp.Name</td>
+                            <td>
+                                @if (emp.JobTitle != null)
+                                {
+                                    @emp.JobTitle
+                                }
+                                else
+                                {
+                                    <span class="text-muted">—</span>
+                                }
+                            </td>
+                            <td>
+                                @if (emp.Department != null)
+                                {
+                                    <span class="badge bg-primary bg-opacity-10 text-primary badge-dept">@emp.Department</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">—</span>
+                                }
+                            </td>
+                            <td><a href="mailto:@emp.Email" class="text-decoration-none">@emp.Email</a></td>
+                            <td>@(emp.Phone ?? "—")</td>
+                            <td class="text-success fw-semibold">$@String.Format("{0:N0}", emp.Salary)</td>
+                            <td class="text-muted small">@emp.HiredOn.ToString("MMM d, yyyy")</td>
+                            <td class="text-end">
+                                <a asp-action="Edit" asp-route-id="@emp.Id" class="btn btn-sm btn-outline-secondary me-1">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@emp.Id" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

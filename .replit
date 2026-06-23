@@ -1,0 +1,42 @@
+run = "bash run.sh"
+language = "bash"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash run.sh"
+waitForPort = 5000
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[agent]
+expertMode = true
+
+[deployment]
+deploymentTarget = "vm"
+run = ["bash", "-c", "export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && cd publish && ./Employee_Admin_Portal"]
+build = ["bash", "-c", "export DOTNET_ROOT=$HOME/.dotnet && export PATH=$HOME/.dotnet:$PATH && export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && if ! command -v dotnet >/dev/null 2>&1; then curl -sSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 --install-dir $HOME/.dotnet; fi && dotnet publish 'Employee Admin Portal.csproj' -c Release -o publish --self-contained true -r linux-x64"]

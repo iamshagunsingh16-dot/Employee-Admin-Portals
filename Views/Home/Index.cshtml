@@ -1,0 +1,154 @@
+@{
+    ViewData["Title"] = "Dashboard";
+    var departments = ViewBag.Departments as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>();
+    var recentHires = ViewBag.RecentHires as IEnumerable<Employee> ?? Enumerable.Empty<Employee>();
+    var topSalaries = ViewBag.TopSalaries as IEnumerable<Employee> ?? Enumerable.Empty<Employee>();
+}
+
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+        <h4 class="fw-bold mb-0">Dashboard</h4>
+        <small class="text-muted">Overview of your workforce</small>
+    </div>
+    <a asp-controller="Employees" asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-1"></i>Add Employee
+    </a>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card h-100 p-3">
+            <div class="d-flex align-items-center gap-3">
+                <div class="icon-wrap bg-primary bg-opacity-10 text-primary">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div>
+                    <div class="fs-2 fw-bold">@ViewBag.TotalEmployees</div>
+                    <div class="text-muted small">Total Employees</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card h-100 p-3">
+            <div class="d-flex align-items-center gap-3">
+                <div class="icon-wrap bg-success bg-opacity-10 text-success">
+                    <i class="bi bi-cash-stack"></i>
+                </div>
+                <div>
+                    <div class="fs-2 fw-bold">$@String.Format("{0:N0}", ViewBag.AvgSalary)</div>
+                    <div class="text-muted small">Average Salary</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card h-100 p-3">
+            <div class="d-flex align-items-center gap-3">
+                <div class="icon-wrap bg-warning bg-opacity-10 text-warning">
+                    <i class="bi bi-diagram-3-fill"></i>
+                </div>
+                <div>
+                    <div class="fs-2 fw-bold">@departments.Count()</div>
+                    <div class="text-muted small">Departments</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card h-100 p-3">
+            <div class="d-flex align-items-center gap-3">
+                <div class="icon-wrap bg-info bg-opacity-10 text-info">
+                    <i class="bi bi-calendar-check-fill"></i>
+                </div>
+                <div>
+                    <div class="fs-2 fw-bold">@recentHires.Count()</div>
+                    <div class="text-muted small">Recent Hires</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="card stat-card h-100">
+            <div class="card-header bg-white fw-semibold border-bottom">
+                <i class="bi bi-diagram-3 me-2 text-primary"></i>By Department
+            </div>
+            <div class="card-body p-0">
+                @if (!departments.Any())
+                {
+                    <p class="text-muted p-3 mb-0">No department data yet.</p>
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var d in departments)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="bi bi-building me-2 text-muted"></i>@d.Department</span>
+                                <span class="badge bg-primary rounded-pill">@d.Count</span>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card stat-card h-100">
+            <div class="card-header bg-white fw-semibold border-bottom">
+                <i class="bi bi-person-plus me-2 text-success"></i>Recent Hires
+            </div>
+            <div class="card-body p-0">
+                @if (!recentHires.Any())
+                {
+                    <p class="text-muted p-3 mb-0">No employees yet.</p>
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var e in recentHires)
+                        {
+                            <li class="list-group-item">
+                                <div class="fw-semibold">@e.Name</div>
+                                <small class="text-muted">@(e.JobTitle ?? "—") · @e.HiredOn.ToString("MMM d, yyyy")</small>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card stat-card h-100">
+            <div class="card-header bg-white fw-semibold border-bottom">
+                <i class="bi bi-trophy me-2 text-warning"></i>Top Salaries
+            </div>
+            <div class="card-body p-0">
+                @if (!topSalaries.Any())
+                {
+                    <p class="text-muted p-3 mb-0">No employees yet.</p>
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var e in topSalaries)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="fw-semibold">@e.Name</div>
+                                    <small class="text-muted">@(e.Department ?? "—")</small>
+                                </div>
+                                <span class="text-success fw-semibold">$@String.Format("{0:N0}", e.Salary)</span>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>

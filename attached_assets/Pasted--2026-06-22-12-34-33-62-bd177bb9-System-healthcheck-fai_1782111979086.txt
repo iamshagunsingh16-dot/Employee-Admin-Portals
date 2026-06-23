@@ -1,0 +1,160 @@
+
+2026-06-22 12:34:33.62
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:34.57
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:35.50
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:35.75
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:35.95
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:36.02
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:36.34
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:36.55
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:37.20
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:38.94
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:39.07
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:40.37
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:41.23
+bd177bb9
+User
+Framework: 'Microsoft.AspNetCore.App', version '10.0.0' (x64)
+
+2026-06-22 12:34:41.23
+bd177bb9
+User
+No frameworks were found.
+
+2026-06-22 12:34:41.23
+bd177bb9
+User
+To install missing framework, download:
+
+2026-06-22 12:34:41.23
+bd177bb9
+User
+https://aka.ms/dotnet-core-applaunch?framework=Microsoft.AspNetCore.App&framework_version=10.0.0&arch=x64&rid=linux-x64&os=ubuntu.24.04
+
+2026-06-22 12:34:41.23
+bd177bb9
+User
+You must install or update .NET to run this application.
+
+2026-06-22 12:34:41.23
+bd177bb9
+System
+command finished with error [bash -c export DOTNET_ROOT=$HOME/.dotnet && export PATH=$HOME/.dotnet:$PATH && export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && if ! command -v dotnet >/dev/null 2>&1; then curl -sSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 --install-dir $HOME/.dotnet --runtime dotnet; fi && cd publish && dotnet Employee_Admin_Portal.dll]: exit status 150
+
+2026-06-22 12:34:41.64
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:41.97
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:43.23
+bd177bb9
+User
+.NET location: /home/runner/.dotnet/
+
+2026-06-22 12:34:43.23
+bd177bb9
+User
+Learn more:
+
+2026-06-22 12:34:43.23
+bd177bb9
+User
+You must install or update .NET to run this application.
+
+2026-06-22 12:34:43.23
+bd177bb9
+User
+https://aka.ms/dotnet/app-launch-failed
+
+2026-06-22 12:34:43.23
+bd177bb9
+User
+Framework: 'Microsoft.AspNetCore.App', version '10.0.0' (x64)
+
+2026-06-22 12:34:43.23
+bd177bb9
+User
+Architecture: x64
+
+2026-06-22 12:34:43.23
+bd177bb9
+User
+App: /home/runner/workspace/publish/Employee_Admin_Portal.dll
+
+2026-06-22 12:34:43.23
+bd177bb9
+User
+No frameworks were found.
+
+2026-06-22 12:34:44.70
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:44.96
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:45.77
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500
+
+2026-06-22 12:34:45.86
+bd177bb9
+System
+healthcheck failed error=healthcheck / returned status 500

@@ -1,0 +1,74 @@
+@model Employee_Admin_Portal.Models.DTOs.LoginRequestDto
+@{
+    ViewData["Title"] = "Sign In";
+    Layout = "_AuthLayout";
+    var appUrl = ViewBag.AppUrl as string;
+}
+
+@if (!string.IsNullOrEmpty(appUrl))
+{
+    <div id="iframe-banner" style="display:none; background:#fef3c7; border:1px solid #f59e0b; border-radius:10px; padding:.85rem 1rem; margin-bottom:1.25rem;">
+        <p class="mb-2 fw-semibold" style="color:#92400e; font-size:.88rem;">
+            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+            You're viewing this inside the Replit canvas. Cookies are blocked by the browser in this context.
+        </p>
+        <a href="@appUrl/Account/Login" target="_blank"
+           class="btn btn-warning btn-sm fw-semibold w-100"
+           style="background:#f59e0b; border:none; color:#fff;">
+            <i class="bi bi-box-arrow-up-right me-1"></i>Open App in New Tab to Sign In
+        </a>
+    </div>
+    <script>
+        if (window.self !== window.top) {
+            document.getElementById('iframe-banner').style.display = 'block';
+        }
+    </script>
+}
+
+<div class="mb-4">
+    <h2 class="fw-bold mb-1" style="color:#111827;">Welcome back</h2>
+    <p class="text-muted mb-0" style="font-size:.93rem;">Sign in to your account to continue</p>
+</div>
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small rounded-3"></div>
+
+<form asp-controller="Account" asp-action="Login" method="post">
+    <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label fw-semibold text-dark mb-1" style="font-size:.9rem;">Email address</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input asp-for="Email" class="form-control" placeholder="you@company.com" autocomplete="email" autofocus />
+        </div>
+        <span asp-validation-for="Email" class="text-danger" style="font-size:.82rem;"></span>
+    </div>
+
+    <div class="mb-4">
+        <label asp-for="Password" class="form-label fw-semibold text-dark mb-1" style="font-size:.9rem;">Password</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" autocomplete="current-password" />
+        </div>
+        <span asp-validation-for="Password" class="text-danger" style="font-size:.82rem;"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-auth mb-3">
+        <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+    </button>
+</form>
+
+<div class="divider">or</div>
+
+<p class="text-center text-muted mb-0" style="font-size:.9rem;">
+    Don't have an account?
+    <a asp-controller="Account" asp-action="Register" class="fw-semibold text-decoration-none" style="color:#1a56db;">Create one</a>
+</p>
+
+<div class="mt-4 p-3 rounded-3" style="background:#eff6ff; border:1px solid #bfdbfe;">
+    <p class="mb-1 fw-semibold text-primary" style="font-size:.82rem;"><i class="bi bi-info-circle me-1"></i>Demo credentials</p>
+    <div class="d-flex gap-3 flex-wrap" style="font-size:.8rem; color:#374151;">
+        <div><span class="badge bg-danger me-1">Admin</span>admin@portal.com / Admin@123</div>
+        <div><span class="badge bg-secondary me-1">Employee</span>employee@portal.com / Employee@123</div>
+    </div>
+</div>

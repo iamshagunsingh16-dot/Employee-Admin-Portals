@@ -1,0 +1,38 @@
+@model Employee
+@{
+    ViewData["Title"] = "Remove Employee";
+}
+
+<div class="mb-4">
+    <a asp-action="Index" class="text-decoration-none text-muted small"><i class="bi bi-arrow-left me-1"></i>Back to Employees</a>
+    <h4 class="fw-bold mt-1 mb-0">Remove Employee</h4>
+</div>
+
+<div class="card stat-card border-danger" style="max-width: 500px;">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center gap-3 mb-4">
+            <div class="icon-wrap bg-danger bg-opacity-10 text-danger" style="width:56px;height:56px;border-radius:14px;font-size:1.6rem;">
+                <i class="bi bi-person-x-fill"></i>
+            </div>
+            <div>
+                <div class="fw-bold fs-5">@Model.Name</div>
+                <div class="text-muted small">@(Model.JobTitle ?? "—") · @(Model.Department ?? "—")</div>
+                <div class="text-muted small">@Model.Email</div>
+            </div>
+        </div>
+
+        <div class="alert alert-warning py-2 small">
+            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+            This action cannot be undone. The employee record will be permanently deleted.
+        </div>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            <div class="d-flex gap-2 mt-3">
+                <button type="submit" class="btn btn-danger px-4">
+                    <i class="bi bi-trash me-1"></i>Yes, Remove
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
