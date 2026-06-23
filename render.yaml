@@ -1,5 +1,0 @@
-services:
-  - type: web
-    name: employee-admin-portal
-    env: docker
-    plan: free
