@@ -111,9 +111,10 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Default route: redirect root to login page instead of Home
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.MapRazorPages();
 
